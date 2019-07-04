@@ -790,11 +790,15 @@ $(document).ready(function(){
 	}
 	calcGlobalMult();
 	
-    updateAll();
+  updateAll();
   
-	$("#moneyButton").click(function(){
-		moneyButtonClick(player.clickPower);
-		player.totalManualClicks += player.clickPower;
+  $('#myElement').on('mousedown', function() {
+    timeoutId = setTimeout(function(){
+			moneyButtonClick(player.clickPower);
+			player.totalManualClicks += player.clickPower;
+		}, 1000);
+	}).on('mouseup mouseleave', function() {
+    clearTimeout(timeoutId);
 	});
 });
 
